@@ -1,9 +1,0 @@
-fastapi>=0.68.0
-uvicorn>=0.15.0
-python-multipart
-pillow
-pytesseract
-playwright
-python-dotenv
-aiofiles
-python2captcha
