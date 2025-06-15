@@ -21,16 +21,30 @@ document.addEventListener('DOMContentLoaded', () => {
     function showResult(imageData) {
         resultImage.src = `data:image/png;base64,${imageData}`;
         result.classList.remove('hidden');
+    }    function showMessage(message, isError = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${isError ? 'error' : 'success'}`;
+        messageDiv.textContent = message;
+        document.querySelector('.container').insertBefore(messageDiv, result);
+        
+        // Remove message after 5 seconds
+        setTimeout(() => messageDiv.remove(), 5000);
     }
 
     function handleError(error) {
         hideLoading();
-        alert(`Ein Fehler ist aufgetreten: ${error.message}`);
+        showMessage(error.message, true);
     }
 
     codeForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const code = document.getElementById('code-input').value;
+        const code = document.getElementById('code-input').value.trim();
+        
+        if (!code) {
+            showMessage('Bitte geben Sie einen Code ein.', true);
+            return;
+        }
+        
         showLoading();
 
         try {
