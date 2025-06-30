@@ -19,7 +19,7 @@ McDonaldsAutoFill/
     └── requirements.txt
 ```
 
-## Setup Instructions
+
 
 
 
